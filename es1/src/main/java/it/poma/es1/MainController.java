@@ -12,15 +12,37 @@ public class MainController {
     @RequestMapping(value = "/{operazione}")
     public String calcola(
             @PathVariable String operazione,
-            @RequestParam int num1,
-            @RequestParam int num2,
+            @RequestParam(required=false) Integer num1,
+            @RequestParam(required=false) Integer num2,
             Model model) {
 
         double res = 0;
+        model.addAttribute("messaggio", "Operazione selezionata con successo!");
 
+        try {
+            res = operazione(operazione, num1, num2);
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("messaggio", "Non hai selezionato un operazione!");
+        }
+
+
+        model.addAttribute("operazione", operazione.toUpperCase());
+        model.addAttribute("num1", num1);
+        model.addAttribute("num2", num2);
+        if (operazione.equals("somma")) {
+            model.addAttribute("risultato", 3);
+        } else {
+                        model.addAttribute("risultato", res);
+
+        }
+
+        return "index";
+    }
+
+    public static double operazione(String operazione, Integer num1, Integer num2) throws IllegalArgumentException {
+        double res = 0;
         switch (operazione) {
             case "somma":
-            default: // in caso il percorso inserito non esistesse
                 operazione = "somma"; // per non visualizzare un testo sbagliato nell'HTML
                 res = num1 + num2;
                 break;
@@ -36,13 +58,10 @@ public class MainController {
             case "potenza":
                 res = Math.pow(num1, num2);
                 break;
+            default:
+                throw new IllegalArgumentException("operazione non supportata");
         }
-
-        model.addAttribute("operazione", operazione.toUpperCase());
-        model.addAttribute("num1", num1);
-        model.addAttribute("num2", num2);
-        model.addAttribute("risultato", res);
-
-        return "index";
+        
+        return res;
     }
 }
