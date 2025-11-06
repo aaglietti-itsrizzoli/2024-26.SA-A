@@ -6,7 +6,7 @@ services:
     entrypoint: ["sh", "letsgo-tests.sh"]
     working_dir: '/opt/tests'
   spring:
-    image: maven:3.6.3-openjdk-17-slim
+    image: maven:3.9.4-eclipse-temurin-21
     volumes:
       - ./es1:/opt/es1
       - ./es1/m2:/root/.m2

@@ -16,11 +16,19 @@ public class MainController {
             @RequestParam int num2,
             Model model) {
 
+        model.addAttribute("operazione", operazione.toUpperCase());
+        model.addAttribute("num1", num1);
+        model.addAttribute("num2", num2);
+        model.addAttribute("risultato", aritmetica(operazione, num1, num2));
+
+        return "index";
+    }
+
+    public static double aritmetica(String operazione, int num1, int num2) throws IllegalArgumentException {
         double res = 0;
 
         switch (operazione) {
             case "somma":
-            default: // in caso il percorso inserito non esistesse
                 operazione = "somma"; // per non visualizzare un testo sbagliato nell'HTML
                 res = num1 + num2;
                 break;
@@ -36,13 +44,10 @@ public class MainController {
             case "potenza":
                 res = Math.pow(num1, num2);
                 break;
+            default:
+                throw new IllegalArgumentException("operazione non è un valore gestito");
         }
+        return res;
 
-        model.addAttribute("operazione", operazione.toUpperCase());
-        model.addAttribute("num1", num1);
-        model.addAttribute("num2", num2);
-        model.addAttribute("risultato", res);
-
-        return "index";
     }
 }
