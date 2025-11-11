@@ -16,3 +16,4 @@ jobs:
       - run: date
       - run: uptime
       - run: lsb_release -a
+      - run: mvn install
