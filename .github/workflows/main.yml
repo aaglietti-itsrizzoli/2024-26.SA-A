@@ -6,3 +6,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Fineeeeeeeeeeeeeeeeeeeeeeeeeeee"
+      - run: java -version
+      - run: ls -ls
+      - run: uname -a
+      - run: whoami
+      - run: echo "J1407b is a substellar object, either a free-floating planet or brown dwarf, with a large circumplanetary disk or ring system."
+      - run: env
+      - run: pwd
+      - run: date
+      - run: uptime
+      - run: lsb_release -a
