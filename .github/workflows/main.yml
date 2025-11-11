@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Fineeeeeeeeeeeeeeeeeeeeeeeeeeee"
-      - run: Java -version
+      - run: java -version
       - run: ls -la
       - run: uname -a
       - run: whoami
