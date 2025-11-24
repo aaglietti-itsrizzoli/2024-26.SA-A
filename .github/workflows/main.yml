@@ -1,0 +1,20 @@
+name: si-actions
+run-name: Ciao da ${{ github.actor }} 
+on: [push]
+jobs:
+  si-fa-cose:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Fineeeeeeeeeeeeeeeeeeeeeeeeeeee"
+      - run: java -version
+      - run: ls -la
+      - run: uname -a 
+      - run: whoami
+      - run: env
+      - run: pwd
+      - run: date
+      - run: uptime
+      - run: lsb_release -a
+      - run: mvn install
+      
+      
